@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/*
+ * Paleta tomada de la presentación del proyecto (diapositiva 8).
+ * Contraste verificado (WCAG AA):
+ *   bosque/marfil 11.1 · tinta/marfil 7.4 · gris/marfil 5.0 · dorado-oscuro/marfil 5.6
+ *   noche/dorado 5.6 (texto de botón) · dorado-claro/bosque 6.1
+ * Dorado (#B8935A) y salvia (#5E8C61) no alcanzan AA como texto sobre fondos claros:
+ * se usan solo como fondo, borde o decoración.
+ */
+@theme {
+  --color-bosque: #1f3a2b;
+  --color-bosque-medio: #2b4d39;
+  --color-noche: #13261b;
+  --color-salvia: #5e8c61;
+  --color-salvia-medio: #9db5a0;
+  --color-salvia-claro: #cfdccf;
+  --color-dorado: #b8935a;
+  --color-dorado-claro: #d2b27a;
+  --color-dorado-oscuro: #7a5c2e;
+  --color-arena: #ece6d4;
+  --color-arena-borde: #ddd6c0;
+  --color-marfil: #f6f3ea;
+  --color-papel: #fcfaf4;
+  --color-tinta: #3f5448;
+  --color-gris: #5e6b62;
+
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-marfil);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    color: var(--color-bosque);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-salvia-claro);
+    color: var(--color-bosque);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-dorado-oscuro);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-site {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Etiqueta en versalitas sobre los títulos, como en la presentación */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-dorado-oscuro);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .eyebrow-light {
+    color: var(--color-dorado-claro);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-arena-borde);
+    background: #fff;
+    padding: 0.75rem 1rem;
+    color: var(--color-bosque);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field::placeholder {
+    color: var(--color-gris);
+    opacity: 0.8;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-salvia);
+    box-shadow: 0 0 0 3px rgb(94 140 97 / 0.2);
+  }
+  .field[aria-invalid="true"] {
+    border-color: #a63d2f;
+  }
+  select.field {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%231f3a2b' stroke-width='1.6' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-bosque);
+  }
+}
+
+/* Aparición al hacer scroll. Solo se oculta si hay JS (clase .js en <html>). */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s var(--ease-suave),
+    transform 0.9s var(--ease-suave);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ocultar la barra de scroll en carruseles horizontales */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
