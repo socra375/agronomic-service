@@ -55,17 +55,28 @@ export interface Zone {
   image: PropertyImage;
 }
 
-export type ServiceIcon = "trees" | "sprout" | "droplets" | "lamp" | "shovel" | "flower";
+export type ServiceIcon = "trees" | "flower" | "sprout" | "clipboard" | "lightbulb";
+
+/**
+ * - "portafolio": servicios que se muestran con fotos (jardines). En la fase 2 el admin
+ *   sube imágenes a la galería en la categoría «jardines».
+ * - "consulta": servicios sin portafolio visual; se atienden en el apartado de chat.
+ */
+export type ServiceMode = "portafolio" | "consulta";
 
 export interface Service {
   id: string;
   title: string;
   description: string;
   icon: ServiceIcon;
+  mode: ServiceMode;
   includes: string[];
+  /** Foto de portada, solo para los servicios de portafolio. */
+  image?: PropertyImage;
 }
 
-export type GalleryCategory = "jardines" | "propiedades" | "exteriores";
+/** Solo jardines y propiedades llevan imágenes. */
+export type GalleryCategory = "jardines" | "propiedades";
 
 export interface GalleryImage {
   id: string;

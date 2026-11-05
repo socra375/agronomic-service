@@ -1,5 +1,6 @@
 import { CatalogCompact } from "@/components/properties/PropertyCatalog";
 import { About } from "@/components/sections/About";
+import { ConsultSection } from "@/components/sections/ConsultSection";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { ExploreByZone } from "@/components/sections/ExploreByZone";
 import { Gallery } from "@/components/sections/Gallery";
@@ -24,7 +25,7 @@ export default async function HomePage() {
   const stats = [
     { value: String(properties.length), label: "Propiedades" },
     { value: String(locations.length), label: "Zonas del país" },
-    { value: String(services.length), label: "Servicios verdes" },
+    { value: String(services.length), label: "Servicios" },
     { value: "RD", label: "Empresa dominicana" },
   ];
 
@@ -32,6 +33,7 @@ export default async function HomePage() {
     <>
       <Hero locations={locations} />
       <Services services={services} />
+      <ConsultSection services={services} />
 
       <section id="propiedades" aria-labelledby="propiedades-titulo" className="py-24 sm:py-32">
         <div className="container-site">

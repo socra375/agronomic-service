@@ -26,6 +26,7 @@ export const siteConfig = {
   ] as const,
   nav: [
     { label: "Servicios", href: "/#servicios" },
+    { label: "Asesoría", href: "/#asesoria" },
     { label: "Propiedades", href: "/propiedades" },
     { label: "Galería", href: "/#galeria" },
     { label: "Nosotros", href: "/#nosotros" },

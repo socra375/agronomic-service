@@ -37,14 +37,15 @@ El sitio queda disponible en http://localhost:3000. Funciona **sin configurar na
 ```
 app/
   layout.tsx                  Fuentes, metadatos, JSON-LD de la empresa, header y footer
-  page.tsx                    Portada: Hero · Servicios · Catálogo · Zonas · Galería · Nosotros · CTA · Solicitar/Contacto
+  page.tsx                    Portada: Hero · Servicios · Asesoría (chat) · Catálogo · Zonas · Galería · Nosotros · CTA · Solicitar/Contacto
   propiedades/page.tsx        Catálogo completo: barra lateral de filtros, cajón en móvil y estado en la URL
   propiedades/[slug]/page.tsx Ficha: fotos con lightbox, datos, características, mapa, formulario y similares
   api/solicitudes/route.ts    POST del formulario: valida con zod, filtra bots con honeypot y avisa por correo con Resend
   sitemap.ts · robots.ts · opengraph-image.tsx · not-found.tsx
 components/
   layout/      Header, Footer, MapEmbed (OpenStreetMap, sin API key)
-  sections/    Hero, Services, ExploreByZone, Gallery, About, CtaBand, RequestSection, RequestForm
+  sections/    Hero, Services, ConsultSection, ExploreByZone, Gallery, About, CtaBand, RequestSection, RequestForm
+  chat/        ConsultChat (apartado de chat de los servicios de consulta)
   properties/  PropertyCard, PropertyCatalog (variantes compacta y completa), FilterControls, PropertyGallery
   ui/          Button, SectionHeading, Logo, Lightbox, SmartImage, Reveal, SocialIcon
 lib/
@@ -80,6 +81,22 @@ Se toma de la presentación del proyecto («Plan de proyecto web»):
 - En `/propiedades` el estado vive en la URL, así que los resultados se pueden compartir: `?q=&loc=&tipo=&op=&min=&max=&hab=&car=piscina,jardin&orden=`.
 - El buscador del hero es un formulario GET normal: funciona aunque JavaScript no haya cargado.
 
+## Servicios
+
+Son los servicios de la tarjeta del cliente, divididos según si se muestran con fotos o no (`mode` en `lib/types.ts`):
+
+| Servicio | Modo | Dónde aparece |
+| --- | --- | --- |
+| Jardinería | `portafolio` | Tarjeta con foto en «Servicios» y fotos en la galería («Jardines») |
+| Diseños Ornamentales | `portafolio` | Tarjeta con foto en «Servicios» y fotos en la galería («Jardines») |
+| Mantenimiento | `consulta` | Apartado de chat «Asesoría por chat» (`#asesoria`) |
+| Supervisión | `consulta` | Apartado de chat |
+| Asesoría Técnica | `consulta` | Apartado de chat |
+
+La galería tiene solo dos categorías con imágenes: **jardines** y **propiedades**. En la fase 2 el administrador subirá las fotos a una de las dos. Las descripciones de los servicios son propuestas y hay que validarlas con el cliente.
+
+**El apartado de chat en la fase 1** es una interfaz conversacional: el cliente elige el servicio, escribe su consulta y deja nombre y teléfono (el correo es opcional). La consulta se envía a `/api/solicitudes` con `channel: "chat"` y llega por correo. En la fase 3 el mismo componente pasará a Supabase Realtime para responder en vivo.
+
 ## Formulario de solicitud
 
 `POST /api/solicitudes` valida los datos e ignora las solicitudes de bots (campo honeypot).
@@ -101,6 +118,7 @@ Se toma de la presentación del proyecto («Plan de proyecto web»):
 - [ ] Logo real del cliente en `components/ui/Logo.tsx` (hoy es un logotipo tipográfico provisional).
 - [ ] Fotos: las de `lib/sample-data.ts` son de Unsplash y de ejemplo. Si una no carga, `SmartImage` muestra un marcador con los colores de la marca.
 - [ ] Propiedades y precios reales (los actuales son ficticios). En la fase 2 se cargarán desde el panel.
+- [ ] **Confirmar el nombre de la empresa:** la tarjeta dice «Servicios Agronómicos, S.A»; el sitio usa «Agronómic Services, S. A.» (`lib/site-config.ts` y `components/ui/Logo.tsx`).
 
 ## Preparado para las siguientes fases
 

@@ -51,8 +51,8 @@ export function Header() {
           <Logo tone={solid ? "dark" : "light"} />
         </Link>
 
-        <nav aria-label="Principal" className="hidden lg:block">
-          <ul className="flex items-center gap-9">
+        <nav aria-label="Principal" className="hidden xl:block">
+          <ul className="flex items-center gap-8">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
                 <Link
@@ -77,7 +77,7 @@ export function Header() {
           </div>
           <button
             type="button"
-            className={`flex h-11 w-11 items-center justify-center rounded-full lg:hidden ${solid ? "text-bosque" : "text-marfil"}`}
+            className={`flex h-11 w-11 items-center justify-center rounded-full xl:hidden ${solid ? "text-bosque" : "text-marfil"}`}
             aria-expanded={open}
             aria-controls="menu-movil"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -92,7 +92,7 @@ export function Header() {
       <div
         id="menu-movil"
         hidden={!open}
-        className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-arena-borde bg-marfil lg:hidden"
+        className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-arena-borde bg-marfil xl:hidden"
       >
         <nav aria-label="Menú móvil" className="container-site flex flex-col py-8">
           {siteConfig.nav.map((item) => (

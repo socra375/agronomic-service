@@ -12,7 +12,6 @@ const Lightbox = dynamic(() => import("../ui/Lightbox"), { ssr: false });
 const tabs: { value: GalleryCategory | "todas"; label: string }[] = [
   { value: "todas", label: "Todo" },
   { value: "jardines", label: "Jardines" },
-  { value: "exteriores", label: "Exteriores" },
   { value: "propiedades", label: "Propiedades" },
 ];
 
@@ -36,7 +35,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
             tone="light"
             eyebrow="Galería"
             title="Proyectos que hablan por sí solos"
-            intro="Jardines, exteriores y propiedades en los que hemos trabajado."
+            intro="Jardines que hemos creado y diseñado, y propiedades de nuestro catálogo."
           />
           <div role="tablist" aria-label="Filtrar galería" className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0">
             {tabs.map((t) => (

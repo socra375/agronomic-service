@@ -1,71 +1,83 @@
-import { Droplets, Flower2, Lamp, Shovel, Sprout, Trees, type LucideIcon } from "lucide-react";
-import { servicesImage } from "@/lib/sample-data";
+import { ArrowUpRight, ClipboardCheck, Flower2, Lightbulb, Sprout, Trees, type LucideIcon } from "lucide-react";
+import Link from "next/link";
 import type { Service, ServiceIcon } from "@/lib/types";
 import { ButtonLink } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 import { SmartImage } from "../ui/SmartImage";
 
-const icons: Record<ServiceIcon, LucideIcon> = {
+export const serviceIcons: Record<ServiceIcon, LucideIcon> = {
   trees: Trees,
-  sprout: Sprout,
-  droplets: Droplets,
-  lamp: Lamp,
-  shovel: Shovel,
   flower: Flower2,
+  sprout: Sprout,
+  clipboard: ClipboardCheck,
+  lightbulb: Lightbulb,
 };
 
+/** Servicios con portafolio de fotos: Jardinería y Diseños Ornamentales. */
 export function Services({ services }: { services: Service[] }) {
+  const portfolio = services.filter((s) => s.mode === "portafolio");
+
   return (
     <section id="servicios" aria-labelledby="servicios-titulo" className="py-24 sm:py-32">
       <div className="container-site">
-        {/* Bloque editorial: imagen + texto */}
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="relative lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-arena">
-              <SmartImage src={servicesImage.src} alt={servicesImage.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
-            </div>
-            <div className="absolute -bottom-6 -right-2 max-w-[15rem] rounded-2xl bg-bosque p-6 text-marfil shadow-xl sm:-right-6">
-              <p className="font-serif text-4xl leading-none text-dorado-claro">100%</p>
-              <p className="mt-2 text-sm leading-snug text-salvia-claro">Diseños a la medida de tu espacio, tu clima y tu estilo de vida.</p>
-            </div>
-          </Reveal>
-
-          <div className="lg:col-span-7">
-            <SectionHeading
-              id="servicios-titulo"
-              eyebrow="Diseño de jardines"
-              title={
-                <>
-                  Jardines pensados para <em className="text-salvia">disfrutarse</em>
-                </>
-              }
-              intro="Del primer boceto al mantenimiento: creamos espacios verdes que suben el valor de tu propiedad y se adaptan al clima del Caribe."
-            />
-            <ButtonLink href="/#solicitar" variant="forest" size="lg" className="mt-9">
-              Pedir una visita de diseño
-            </ButtonLink>
-          </div>
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <SectionHeading
+            id="servicios-titulo"
+            eyebrow="Nuestros servicios"
+            title={
+              <>
+                Jardines pensados para <em className="text-salvia">disfrutarse</em>
+              </>
+            }
+            intro="Creamos, diseñamos y cuidamos espacios verdes que suben el valor de tu propiedad y se adaptan al clima del Caribe."
+          />
+          <ButtonLink href="/#galeria" variant="outline" size="lg" className="self-start lg:self-auto">
+            Ver proyectos realizados
+          </ButtonLink>
         </div>
 
-        <ul className="mt-24 grid gap-px overflow-hidden rounded-[1.75rem] border border-arena-borde bg-arena-borde sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => {
-            const Icon = icons[s.icon];
+        <ul className="mt-16 grid gap-8 lg:grid-cols-2">
+          {portfolio.map((s, i) => {
+            const Icon = serviceIcons[s.icon];
             return (
-              <Reveal as="li" key={s.id} delay={(i % 3) * 90} className="group bg-papel p-8 transition-colors duration-500 hover:bg-arena sm:p-10">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-salvia-claro text-bosque transition-colors duration-500 group-hover:bg-bosque group-hover:text-dorado-claro">
-                  <Icon className="h-6 w-6" strokeWidth={1.5} aria-hidden />
-                </span>
-                <h3 className="mt-7 text-[1.75rem]">{s.title}</h3>
-                <p className="mt-3 leading-relaxed text-gris">{s.description}</p>
-                <ul className="mt-6 space-y-2 border-t border-arena-borde pt-5 text-sm font-semibold text-tinta">
-                  {s.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-2.5">
-                      <span className="h-1 w-1 rounded-full bg-dorado" aria-hidden />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <Reveal as="li" key={s.id} delay={i * 120}>
+                <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-papel ring-1 ring-arena-borde">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-arena">
+                    {s.image && (
+                      <SmartImage
+                        src={s.image.src}
+                        alt={s.image.alt}
+                        fill
+                        sizes="(min-width: 1024px) 45vw, 100vw"
+                        className="object-cover transition-transform duration-[1.2s] ease-(--ease-suave) group-hover:scale-105"
+                      />
+                    )}
+                    <span className="absolute left-5 top-5 flex h-14 w-14 items-center justify-center rounded-full bg-marfil/95 text-bosque">
+                      <Icon className="h-6 w-6" strokeWidth={1.5} aria-hidden />
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-8 sm:p-10">
+                    <h3 className="text-4xl">{s.title}</h3>
+                    <p className="mt-3 text-lg leading-relaxed text-gris">{s.description}</p>
+                    <ul className="mt-6 flex flex-wrap gap-2">
+                      {s.includes.map((item) => (
+                        <li key={item} className="rounded-full bg-arena px-3.5 py-1.5 text-sm font-semibold text-bosque">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
+                      <ButtonLink href="/#solicitar" variant="forest">
+                        Solicitar {s.title.toLowerCase()}
+                      </ButtonLink>
+                      <Link href="/#galeria" className="group/link inline-flex items-center gap-1.5 font-bold text-bosque">
+                        Ver fotos
+                        <ArrowUpRight className="h-4 w-4 transition group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" aria-hidden />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
               </Reveal>
             );
           })}

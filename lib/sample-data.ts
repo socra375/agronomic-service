@@ -18,11 +18,6 @@ export const aboutImage = {
   alt: "Casa familiar con jardín de césped y arbustos bien cuidados",
 };
 
-export const servicesImage = {
-  src: u("1416879595882-3373a0480b5b"),
-  alt: "Plantas en macetas y herramientas de jardinería",
-};
-
 export const ctaImage = {
   src: u("1600585154340-be6161a56a0c"),
   alt: "Casa moderna con piscina y jardín al atardecer",
@@ -310,7 +305,7 @@ export const properties: Property[] = [
     summary: "Solar de 1,500 m² en primera línea de playa, listo para construir la casa de tus sueños.",
     description: [
       "Solar plano con todos los servicios, en una comunidad con seguridad, campo de golf y marina.",
-      "Te acompañamos en el diseño del paisajismo desde el primer día: orientación, vegetación nativa y riego.",
+      "Te acompañamos con el diseño ornamental y la asesoría técnica del jardín desde el primer día.",
     ],
     price: 720_000,
     currency: "USD",
@@ -395,48 +390,51 @@ export const properties: Property[] = [
   },
 ];
 
+/** Servicios reales de la tarjeta del cliente. Las descripciones son propuestas a validar. */
 export const services: Service[] = [
   {
-    id: "s-diseno",
-    title: "Diseño paisajista",
-    description: "Proyectos a medida para jardines residenciales, villas y áreas comunes, desde el boceto hasta el plano final.",
+    id: "s-jardineria",
+    title: "Jardinería",
+    description:
+      "Creamos y renovamos jardines residenciales y comerciales: preparación del terreno, siembra de césped, plantas, árboles y palmeras.",
     icon: "trees",
-    includes: ["Visita y levantamiento", "Propuesta con plano y renders", "Selección de especies"],
+    mode: "portafolio",
+    includes: ["Preparación de terreno", "Siembra de césped y plantas", "Árboles y palmeras"],
+    image: { src: u("1585320806297-9794b3e4eeae"), alt: "Jardín residencial con césped y arbustos recién sembrados" },
   },
   {
-    id: "s-instalacion",
-    title: "Instalación de jardines",
-    description: "Preparamos el suelo y plantamos césped, arbustos y árboles con especies adaptadas al clima dominicano.",
-    icon: "shovel",
-    includes: ["Preparación de terreno", "Césped y plantas", "Caminos y bordes"],
-  },
-  {
-    id: "s-riego",
-    title: "Sistemas de riego",
-    description: "Riego automático por goteo y aspersión, pensado para ahorrar agua y mantener el jardín verde todo el año.",
-    icon: "droplets",
-    includes: ["Diseño hidráulico", "Programadores inteligentes", "Mantenimiento"],
-  },
-  {
-    id: "s-iluminacion",
-    title: "Iluminación exterior",
-    description: "Luz cálida que realza fachadas, senderos y árboles para disfrutar el jardín también de noche.",
-    icon: "lamp",
-    includes: ["Proyecto lumínico", "Luminarias LED", "Encendido automático"],
+    id: "s-disenos-ornamentales",
+    title: "Diseños Ornamentales",
+    description:
+      "Diseñamos espacios verdes a medida, con composiciones de plantas ornamentales adaptadas al clima dominicano y al estilo de tu casa.",
+    icon: "flower",
+    mode: "portafolio",
+    includes: ["Propuesta de diseño", "Selección de especies", "Composición ornamental"],
+    image: { src: u("1558904541-efa843a96f01"), alt: "Patio con diseño ornamental de plantas y senderos" },
   },
   {
     id: "s-mantenimiento",
     title: "Mantenimiento",
-    description: "Planes periódicos de poda, fertilización y control de plagas para que tu jardín siga como el primer día.",
+    description: "Planes periódicos de poda, fertilización, riego y control de plagas para que tu jardín siga sano todo el año.",
     icon: "sprout",
-    includes: ["Visitas programadas", "Poda y fertilización", "Reporte de estado"],
+    mode: "consulta",
+    includes: ["Visitas programadas", "Poda y fertilización", "Control de plagas"],
   },
   {
-    id: "s-tropical",
-    title: "Jardines tropicales y huertos",
-    description: "Jardines con plantas nativas, frutales y huertos familiares que atraen vida y necesitan menos agua.",
-    icon: "flower",
-    includes: ["Especies nativas", "Huerto familiar", "Compostaje"],
+    id: "s-supervision",
+    title: "Supervisión",
+    description: "Supervisamos la ejecución de proyectos de jardinería y áreas verdes para que se cumplan el diseño, los plazos y la calidad.",
+    icon: "clipboard",
+    mode: "consulta",
+    includes: ["Seguimiento de obra", "Control de calidad", "Informes de avance"],
+  },
+  {
+    id: "s-asesoria-tecnica",
+    title: "Asesoría Técnica",
+    description: "Orientación agronómica sobre suelos, riego, plagas, enfermedades y la elección de especies para tu terreno.",
+    icon: "lightbulb",
+    mode: "consulta",
+    includes: ["Diagnóstico de suelo y plantas", "Recomendaciones de riego", "Elección de especies"],
   },
 ];
 
@@ -444,13 +442,13 @@ export const gallery: GalleryImage[] = [
   { id: "g-01", src: u("1585320806297-9794b3e4eeae"), alt: "Jardín residencial con césped y arbustos", category: "jardines", shape: "tall" },
   { id: "g-02", src: u("1613490493576-7fde63acd811"), alt: "Villa con piscina y paisajismo tropical", category: "propiedades", shape: "wide" },
   { id: "g-03", src: u("1416879595882-3373a0480b5b"), alt: "Plantas en macetas listas para sembrar", category: "jardines" },
-  { id: "g-04", src: u("1600596542815-ffad4c1539a9"), alt: "Fachada moderna con jardín frontal", category: "exteriores" },
+  { id: "g-04", src: u("1600596542815-ffad4c1539a9"), alt: "Fachada moderna con jardín frontal", category: "propiedades" },
   { id: "g-05", src: u("1466692476868-aef1dfb1e735"), alt: "Detalle de plantas y flores del jardín", category: "jardines" },
-  { id: "g-06", src: u("1600585154340-be6161a56a0c"), alt: "Exterior iluminado al atardecer", category: "exteriores", shape: "wide" },
+  { id: "g-06", src: u("1600585154340-be6161a56a0c"), alt: "Exterior iluminado al atardecer", category: "propiedades", shape: "wide" },
   { id: "g-07", src: u("1512917774080-9991f1c4c750"), alt: "Villa de lujo con piscina", category: "propiedades" },
   { id: "g-08", src: u("1558904541-efa843a96f01"), alt: "Patio trasero con jardín de diseño", category: "jardines", shape: "tall" },
-  { id: "g-09", src: u("1600047509807-ba8f99d2cdde"), alt: "Casa con jardín y camino de entrada", category: "exteriores" },
+  { id: "g-09", src: u("1600047509807-ba8f99d2cdde"), alt: "Casa con jardín y camino de entrada", category: "propiedades" },
   { id: "g-10", src: u("1459156212016-c812468e2115"), alt: "Composición de plantas tropicales", category: "jardines" },
   { id: "g-11", src: u("1600607687939-ce8a6c25118c"), alt: "Interior luminoso con vista al jardín", category: "propiedades" },
-  { id: "g-12", src: u("1564013799919-ab600027ffc6"), alt: "Casa familiar con césped y arbustos", category: "exteriores", shape: "wide" },
+  { id: "g-12", src: u("1564013799919-ab600027ffc6"), alt: "Casa familiar con césped y arbustos", category: "propiedades", shape: "wide" },
 ];

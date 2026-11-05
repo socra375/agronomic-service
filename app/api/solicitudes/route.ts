@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { leadSchema } from "@/lib/lead-schema";
+import { chatSchema, leadSchema } from "@/lib/lead-schema";
 import { siteConfig } from "@/lib/site-config";
 
 /**
@@ -20,7 +20,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const parsed = leadSchema.safeParse(body);
+  const isChat = Boolean(body && typeof body === "object" && (body as { channel?: unknown }).channel === "chat");
+  const parsed = (isChat ? chatSchema : leadSchema).safeParse(body);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};
     for (const issue of parsed.error.issues) {
@@ -35,7 +36,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.info("[solicitudes] Nueva solicitud (sin RESEND_API_KEY, no se envió correo):", lead);
+    console.info(`[solicitudes] Nueva ${isChat ? "consulta por chat" : "solicitud"} (sin RESEND_API_KEY, no se envió correo):`, lead);
     return NextResponse.json({ ok: true });
   }
 
@@ -43,7 +44,8 @@ export async function POST(request: Request) {
   const rows: [string, string][] = [
     ["Nombre", lead.name],
     ["Teléfono", lead.phone],
-    ["Correo", lead.email],
+    ["Canal", isChat ? "Chat de consultas" : "Formulario"],
+    ["Correo", lead.email || "—"],
     ["Servicio", lead.service],
     ["Mensaje", lead.message || "—"],
     ["Origen", lead.source || "Sitio web"],
@@ -56,8 +58,8 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: process.env.LEADS_NOTIFY_FROM ?? "Agronómic Services <onboarding@resend.dev>",
         to: (process.env.LEADS_NOTIFY_TO ?? siteConfig.contact.email).split(",").map((s) => s.trim()),
-        reply_to: lead.email,
-        subject: `Nueva solicitud: ${lead.service} · ${lead.name}`,
+        ...(lead.email ? { reply_to: lead.email } : {}),
+        subject: `${isChat ? "Nueva consulta por chat" : "Nueva solicitud"}: ${lead.service} · ${lead.name}`,
         html: `<h2 style="font-family:Georgia,serif;color:#1F3A2B">Nueva solicitud desde el sitio web</h2>
 <table cellpadding="8" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;color:#3F5448">
 ${rows.map(([k, v]) => `<tr><td style="font-weight:bold;border-bottom:1px solid #ECE6D4">${k}</td><td style="border-bottom:1px solid #ECE6D4">${escape(v).replace(/\n/g, "<br>")}</td></tr>`).join("")}
