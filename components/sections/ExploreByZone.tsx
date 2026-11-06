@@ -1,7 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { ZoneWithCount } from "@/lib/data";
-import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 import { SmartImage } from "../ui/SmartImage";
 
@@ -15,18 +14,18 @@ export function ExploreByZone({ zones }: { zones: ZoneWithCount[] }) {
           <SectionHeading
             id="zonas-titulo"
             eyebrow="Explora por zona"
-            title="Del Caribe a la montaña"
-            intro="Elige dónde te imaginas viviendo y te mostramos lo disponible en esa zona."
+            title="Propiedades por zona"
+            intro="Elige una zona y te mostramos las propiedades disponibles allí."
           />
           <Link href="/propiedades" className="group inline-flex items-center gap-2 font-bold text-bosque">
-            Ver todas las zonas
+            Ver todas las propiedades
             <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
           </Link>
         </div>
 
         <ul className="no-scrollbar -mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3">
-          {visible.map((z, i) => (
-            <Reveal as="li" key={z.name} delay={(i % 3) * 90} className="w-[78%] shrink-0 snap-start sm:w-auto">
+          {visible.map((z) => (
+            <li key={z.name} className="w-[78%] shrink-0 snap-start sm:w-auto">
               <Link
                 href={`/propiedades?loc=${encodeURIComponent(z.name)}`}
                 className="group relative block aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-bosque sm:aspect-[4/5]"
@@ -36,7 +35,7 @@ export function ExploreByZone({ zones }: { zones: ZoneWithCount[] }) {
                   alt={z.image.alt}
                   fill
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 78vw"
-                  className="object-cover transition-transform duration-[1.2s] ease-(--ease-suave) group-hover:scale-105"
+                  className="object-cover transition-transform duration-[600ms] ease-(--ease-suave) group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-noche/85 via-noche/10 to-transparent" aria-hidden />
                 <div className="absolute inset-x-0 bottom-0 p-7">
@@ -49,7 +48,7 @@ export function ExploreByZone({ zones }: { zones: ZoneWithCount[] }) {
                   </p>
                 </div>
               </Link>
-            </Reveal>
+            </li>
           ))}
         </ul>
       </div>

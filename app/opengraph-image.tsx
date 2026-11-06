@@ -32,7 +32,7 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span style={{ fontSize: 22, letterSpacing: 6, color: "#D2B27A" }}>DISEÑO DE JARDINES · BIENES RAÍCES</span>
           <span style={{ fontSize: 76, lineHeight: 1.05, marginTop: 20, maxWidth: 950 }}>
-            Exteriores que se viven, hogares que inspiran
+            Jardinería y bienes raíces en República Dominicana
           </span>
         </div>
         <span style={{ fontSize: 22, color: "#CFDCCF" }}>República Dominicana</span>

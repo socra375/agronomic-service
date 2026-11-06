@@ -11,7 +11,7 @@ export function PropertyCard({ property, priority = false }: { property: Propert
   const isLand = p.type === "solar";
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-papel shadow-[0_1px_0_rgb(31_58_43_/_0.06)] ring-1 ring-arena-borde transition-all duration-500 ease-(--ease-suave) hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgb(31_58_43_/_0.45)]">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-papel shadow-[0_1px_0_rgb(31_58_43_/_0.06)] ring-1 ring-arena-borde transition-all duration-500 ease-(--ease-suave) hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-30px_rgb(31_58_43_/_0.45)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-arena">
         {cover && (
           <SmartImage
@@ -20,7 +20,7 @@ export function PropertyCard({ property, priority = false }: { property: Propert
             fill
             priority={priority}
             sizes="(min-width: 1280px) 26vw, (min-width: 768px) 45vw, 100vw"
-            className="object-cover transition-transform duration-[1.2s] ease-(--ease-suave) group-hover:scale-105"
+            className="object-cover transition-transform duration-[600ms] ease-(--ease-suave) group-hover:scale-[1.03]"
           />
         )}
         <div className="absolute left-4 top-4 flex gap-2">

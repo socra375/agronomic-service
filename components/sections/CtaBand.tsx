@@ -10,14 +10,14 @@ export function CtaBand() {
       <div className="container-site text-center">
         <p className="eyebrow eyebrow-light justify-center">Empecemos</p>
         <h2 id="cta-titulo" className="mx-auto mt-5 max-w-3xl text-4xl !text-marfil sm:text-6xl">
-          Tu próximo hogar merece un jardín a su altura
+          Visitas de diseño para jardines y terrazas
         </h2>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/#solicitar" size="lg">
             Solicitar servicio
           </ButtonLink>
           <ButtonLink href="/propiedades" size="lg" variant="outline-light">
-            Explorar propiedades
+            Ver propiedades
           </ButtonLink>
         </div>
       </div>

@@ -170,23 +170,106 @@
   }
 }
 
-/* Aparición al hacer scroll. Solo se oculta si hay JS (clase .js en <html>). */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.9s var(--ease-suave),
-    transform 0.9s var(--ease-suave);
-}
-.js .reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 /* Ocultar la barra de scroll en carruseles horizontales */
 .no-scrollbar {
   scrollbar-width: none;
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ---------- Hero con fotos que se alternan (HeroSlideshow) ---------- */
+.hs-img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hs-img.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+.hs-img.is-leaving {
+  opacity: 0;
+  z-index: 2;
+}
+.hs-img__zoom {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.06);
+}
+.hs-img.is-active .hs-img__zoom {
+  animation: hs-zoom 8s linear forwards;
+}
+.hs-img.is-leaving .hs-img__zoom {
+  transform: scale(1);
+}
+@keyframes hs-zoom {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+
+/* Título: el entrante y el saliente comparten la misma celda */
+.hs-stage {
+  display: grid;
+  min-height: 2.1em;
+  align-items: end;
+}
+.hs-title {
+  grid-area: 1 / 1;
+  display: block;
+}
+.hs-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* espacio para los descendentes (g, p, q) dentro del recorte */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.hs-letter {
+  display: inline-block;
+  will-change: transform;
+}
+.hs-title--in .hs-letter {
+  transform: translateY(110%);
+  animation: hs-letter-in 0.95s var(--ease-suave) forwards;
+  animation-delay: calc(var(--i) * 24ms + 380ms);
+}
+.hs-title--out .hs-letter {
+  animation: hs-letter-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: calc(var(--i) * 12ms);
+}
+@keyframes hs-letter-in {
+  to { transform: none; }
+}
+@keyframes hs-letter-out {
+  from { transform: none; opacity: 1; }
+  to { transform: translateY(-110%); opacity: 0; }
+}
+
+.hs-progress {
+  transform: scaleX(0);
+  animation-name: hs-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes hs-progress {
+  to { transform: scaleX(1); }
+}
+
+/* Reducir movimiento: sin fundidos largos, sin acercamiento ni letras */
+.hs--reduced .hs-img {
+  transition: none;
+}
+.hs--reduced .hs-img .hs-img__zoom {
+  animation: none;
+  transform: none;
+}
+.hs--reduced .hs-title--out {
+  display: none;
+}
+.hs--reduced .hs-progress {
+  animation: none;
+  transform: none;
 }

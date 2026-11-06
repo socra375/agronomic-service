@@ -51,8 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-DO" suppressHydrationWarning>
       <head>
-        {/* Marca <html> con .js para que las animaciones de aparición solo apliquen con JavaScript */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(localBusinessJsonLd())} />
       </head>
       <body>

@@ -36,7 +36,7 @@ export default async function PropertiesPage() {
         <SectionHeading
           as="h1"
           eyebrow="Catálogo"
-          title="Encuentra tu lugar"
+          title="Propiedades en venta y alquiler"
           intro="Busca por zona, tipo o característica, y combina los filtros para encontrar la propiedad que se ajusta a ti."
         />
         <div className="mt-14">

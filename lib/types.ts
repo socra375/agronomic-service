@@ -48,6 +48,20 @@ export interface Property {
   createdAt: string;
 }
 
+/** Diapositiva del hero. Si tiene `propertySlug`, el detalle se toma de esa propiedad. */
+export interface HeroSlide {
+  id: string;
+  /** Título grande, en lenguaje llano: qué es y dónde. */
+  title: string;
+  image: PropertyImage;
+  /** Categoría corta: «Jardinería», «Propiedad en venta»… */
+  label: string;
+  /** Línea de dato concreto (nombre y precio, o el servicio). */
+  detail?: string;
+  href: string;
+  propertySlug?: string;
+}
+
 export interface Zone {
   name: string;
   province: string;

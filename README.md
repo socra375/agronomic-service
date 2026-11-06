@@ -74,6 +74,19 @@ Se toma de la presentación del proyecto («Plan de proyecto web»):
 - **Tipografía:** Cormorant Garamond para títulos y Nunito Sans para texto, autoalojadas con `@fontsource` (no dependen de Google Fonts).
 - **Referencias:** sitios de resort como Playa Dorada y Bahía Príncipe. Se nota en el hero a sangre con buscador flotante, las tarjetas «Explora por zona», los bloques editoriales y la navegación mínima.
 
+## Hero y movimiento
+
+- **Hero con fotos que se alternan** (`components/sections/HeroSlideshow.tsx`, datos en `heroSlides` de `lib/sample-data.ts`):
+  - Fotos de jardines y propiedades que cambian cada 6,5 s con un fundido y un acercamiento suave.
+  - El título entra letra por letra en cada cambio.
+  - Controles: barra de progreso por foto, anterior y siguiente, y pausa. Se detiene si la pestaña no está visible.
+  - Con «reducir movimiento» no avanza solo ni anima letras.
+  - El h1 («Jardinería y bienes raíces en República Dominicana») no cambia con las fotos, así el SEO no depende de ellas.
+- **Resto del sitio:** sigue la guía *taste-skill*.
+  - Sin apariciones al hacer scroll ni parallax.
+  - Solo reacciones al pasar el cursor: las tarjetas suben 2 px y las fotos se acercan un 3 %.
+  - Títulos y botones en lenguaje llano, que nombran el servicio o el lugar.
+
 ## Catálogo: buscador y filtros
 
 - La búsqueda de texto no distingue acentos ni mayúsculas («samana» encuentra «Samaná») y revisa título, zona, dirección, tipo y características.

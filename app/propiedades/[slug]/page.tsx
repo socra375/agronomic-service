@@ -169,7 +169,7 @@ export default async function PropertyPage({ params }: { params: Promise<Params>
           <aside className="lg:col-span-5 xl:col-span-4" aria-labelledby="solicitar-info">
             <div className="lg:sticky lg:top-28">
               <div className="rounded-t-[1.5rem] bg-bosque px-6 py-6 text-marfil">
-                <p className="eyebrow eyebrow-light">¿Te interesa?</p>
+                <p className="eyebrow eyebrow-light">Información y visitas</p>
                 <h2 id="solicitar-info" className="mt-2 text-3xl !text-marfil">
                   Solicita información o una visita
                 </h2>

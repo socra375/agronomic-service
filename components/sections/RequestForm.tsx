@@ -77,7 +77,7 @@ export function RequestForm({ serviceOptions, defaultService = "", defaultMessag
     return (
       <div role="status" className="flex flex-col items-center rounded-[1.5rem] bg-papel px-6 py-14 text-center ring-1 ring-arena-borde">
         <CheckCircle2 className="h-12 w-12 text-salvia" strokeWidth={1.4} aria-hidden />
-        <h3 className="mt-5 text-3xl">¡Gracias! Recibimos tu solicitud</h3>
+        <h3 className="mt-5 text-3xl">Gracias, recibimos tu solicitud</h3>
         <p className="mt-3 max-w-sm text-gris">Te contactaremos muy pronto por teléfono o correo.</p>
         <Button variant="outline" className="mt-8" onClick={() => setStatus("idle")}>
           Enviar otra solicitud
