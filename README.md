@@ -32,6 +32,10 @@ El sitio queda disponible en http://localhost:3000. Funciona **sin configurar na
 | `npm run typecheck` | Comprobación de tipos de TypeScript |
 | `npm test` | Pruebas de la lógica de filtros (vitest) |
 
+## Revisión automática (CI)
+
+`.github/workflows/ci.yml` corre en cada PR y en cada push a `main`. Ejecuta `npm ci`, lint, tipos, pruebas y build con Node 22. Un PR está **en verde** cuando pasan este flujo y el despliegue de Vercel.
+
 ## Estructura
 
 ```
