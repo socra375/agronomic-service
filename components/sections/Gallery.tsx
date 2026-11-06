@@ -34,7 +34,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
             id="galeria-titulo"
             tone="light"
             eyebrow="Galería"
-            title="Proyectos que hablan por sí solos"
+            title="Fotos de jardines y propiedades"
             intro="Jardines que hemos creado y diseñado, y propiedades de nuestro catálogo."
           />
           <div role="tablist" aria-label="Filtrar galería" className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0">
@@ -71,7 +71,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                   alt={img.alt}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-[1.2s] ease-(--ease-suave) group-hover:scale-105"
+                  className="object-cover transition-transform duration-[600ms] ease-(--ease-suave) group-hover:scale-[1.03]"
                 />
                 <span className="absolute inset-0 flex items-end justify-between bg-gradient-to-t from-noche/75 via-transparent to-transparent p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <span className="text-left font-serif text-lg italic text-marfil">{img.alt}</span>

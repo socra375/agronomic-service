@@ -1,4 +1,4 @@
-import type { GalleryImage, Property, Service, Zone } from "./types";
+import type { GalleryImage, HeroSlide, Property, Service, Zone } from "./types";
 
 /**
  * DATOS DE EJEMPLO (fase 1).
@@ -8,10 +8,41 @@ import type { GalleryImage, Property, Service, Zone } from "./types";
 
 const u = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=80`;
 
-export const heroImage = {
-  src: u("1582268611958-ebfd161ef9cf"),
-  alt: "Villa tropical con piscina rodeada de jardines y palmeras",
-};
+/** Diapositivas del hero: se alternan jardines y propiedades. */
+export const heroSlides: HeroSlide[] = [
+  {
+    id: "h-jardines",
+    title: "Jardines residenciales a medida",
+    image: { src: u("1564013799919-ab600027ffc6"), alt: "Casa familiar con jardín de césped y arbustos bien cuidados" },
+    label: "Jardinería",
+    detail: "Diseño, siembra y mantenimiento",
+    href: "/#servicios",
+  },
+  {
+    id: "h-villa-palmeras",
+    title: "Villas con jardín en Punta Cana",
+    image: { src: u("1613490493576-7fde63acd811"), alt: "Villa con piscina rodeada de jardín tropical" },
+    label: "Propiedad en venta",
+    href: "/propiedades/villa-palmeras-punta-cana",
+    propertySlug: "villa-palmeras-punta-cana",
+  },
+  {
+    id: "h-ornamentales",
+    title: "Diseños ornamentales para tu terraza",
+    image: { src: u("1582268611958-ebfd161ef9cf"), alt: "Terraza con plantas ornamentales junto a una casa de cristal" },
+    label: "Diseños Ornamentales",
+    detail: "Plantas adaptadas al clima dominicano",
+    href: "/#servicios",
+  },
+  {
+    id: "h-cacicazgos",
+    title: "Casas familiares en Santo Domingo",
+    image: { src: u("1600585154340-be6161a56a0c"), alt: "Casa moderna con piscina y jardín al atardecer" },
+    label: "Propiedad en venta",
+    href: "/propiedades/residencia-los-cacicazgos-santo-domingo",
+    propertySlug: "residencia-los-cacicazgos-santo-domingo",
+  },
+];
 
 export const aboutImage = {
   src: u("1564013799919-ab600027ffc6"),

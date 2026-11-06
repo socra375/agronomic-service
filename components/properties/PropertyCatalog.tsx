@@ -51,7 +51,7 @@ function EmptyState({ onClear }: { onClear: () => void }) {
           Limpiar filtros
         </Button>
         <ButtonLink href="/#solicitar" variant="outline">
-          Contarnos qué buscas
+          Solicitar una búsqueda
         </ButtonLink>
       </div>
     </div>

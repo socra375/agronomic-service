@@ -8,15 +8,16 @@ import { Hero } from "@/components/sections/Hero";
 import { RequestSection } from "@/components/sections/RequestSection";
 import { Services } from "@/components/sections/Services";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getGallery, getProperties, getServices, getZones } from "@/lib/data";
+import { getGallery, getHeroSlides, getProperties, getServices, getZones } from "@/lib/data";
 import { extraServiceOptions } from "@/lib/lead-schema";
 
 export default async function HomePage() {
-  const [properties, services, gallery, zones] = await Promise.all([
+  const [properties, services, gallery, zones, heroSlides] = await Promise.all([
     getProperties(),
     getServices(),
     getGallery(),
     getZones(),
+    getHeroSlides(),
   ]);
 
   const locations = zones.filter((z) => z.count > 0).map((z) => z.name);
@@ -31,7 +32,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero locations={locations} />
+      <Hero slides={heroSlides} locations={locations} />
       <Services services={services} />
       <ConsultSection services={services} />
 
@@ -40,7 +41,7 @@ export default async function HomePage() {
           <SectionHeading
             id="propiedades-titulo"
             eyebrow="Catálogo"
-            title="Propiedades seleccionadas"
+            title="Casas, villas y solares en venta y alquiler"
             intro="Villas, casas, apartamentos y solares en las mejores zonas de República Dominicana. Filtra por precio, ubicación y características."
           />
           <div className="mt-12">

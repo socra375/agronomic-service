@@ -3,9 +3,10 @@
  * Hoy devuelve los datos de ejemplo. En la fase 2 se reemplaza el interior de estas
  * funciones por consultas a Supabase sin tocar los componentes.
  */
-import { gallery, properties, services, zones } from "../sample-data";
+import { formatPrice } from "../format";
+import { gallery, heroSlides, properties, services, zones } from "../sample-data";
 import { normalize } from "../normalize";
-import type { GalleryImage, Property, Service, Zone } from "../types";
+import type { GalleryImage, HeroSlide, Property, Service, Zone } from "../types";
 
 export async function getProperties(): Promise<Property[]> {
   return properties;
@@ -43,4 +44,12 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getGallery(): Promise<GalleryImage[]> {
   return gallery;
+}
+
+/** Diapositivas del hero. Las de propiedad toman nombre, zona y precio de la propiedad. */
+export async function getHeroSlides(): Promise<HeroSlide[]> {
+  return heroSlides.map((slide) => {
+    const p = slide.propertySlug ? properties.find((x) => x.slug === slide.propertySlug) : undefined;
+    return p ? { ...slide, detail: `${p.title}, ${p.location} · ${formatPrice(p)}` } : slide;
+  });
 }

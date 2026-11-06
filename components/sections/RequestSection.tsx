@@ -19,8 +19,8 @@ export function RequestSection({ serviceOptions }: { serviceOptions: string[] })
         <div className="lg:col-span-5">
           <SectionHeading
             id="solicitar-titulo"
-            eyebrow="Solicitar servicio"
-            title="Cuéntanos tu idea"
+            eyebrow="Contacto"
+            title="Solicitud de servicio"
             intro="Déjanos tus datos y te contactamos para coordinar una visita, enviarte una propuesta o mostrarte propiedades."
           />
           <ul id="contacto" className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-1" aria-label="Datos de contacto">

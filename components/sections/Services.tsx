@@ -2,7 +2,6 @@ import { ArrowUpRight, ClipboardCheck, Flower2, Lightbulb, Sprout, Trees, type L
 import Link from "next/link";
 import type { Service, ServiceIcon } from "@/lib/types";
 import { ButtonLink } from "../ui/Button";
-import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 import { SmartImage } from "../ui/SmartImage";
 
@@ -25,11 +24,7 @@ export function Services({ services }: { services: Service[] }) {
           <SectionHeading
             id="servicios-titulo"
             eyebrow="Nuestros servicios"
-            title={
-              <>
-                Jardines pensados para <em className="text-salvia">disfrutarse</em>
-              </>
-            }
+            title="Jardinería y diseños ornamentales"
             intro="Creamos, diseñamos y cuidamos espacios verdes que suben el valor de tu propiedad y se adaptan al clima del Caribe."
           />
           <ButtonLink href="/#galeria" variant="outline" size="lg" className="self-start lg:self-auto">
@@ -38,10 +33,10 @@ export function Services({ services }: { services: Service[] }) {
         </div>
 
         <ul className="mt-16 grid gap-8 lg:grid-cols-2">
-          {portfolio.map((s, i) => {
+          {portfolio.map((s) => {
             const Icon = serviceIcons[s.icon];
             return (
-              <Reveal as="li" key={s.id} delay={i * 120}>
+              <li key={s.id}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-papel ring-1 ring-arena-borde">
                   <div className="relative aspect-[16/10] overflow-hidden bg-arena">
                     {s.image && (
@@ -50,7 +45,7 @@ export function Services({ services }: { services: Service[] }) {
                         alt={s.image.alt}
                         fill
                         sizes="(min-width: 1024px) 45vw, 100vw"
-                        className="object-cover transition-transform duration-[1.2s] ease-(--ease-suave) group-hover:scale-105"
+                        className="object-cover transition-transform duration-[600ms] ease-(--ease-suave) group-hover:scale-[1.03]"
                       />
                     )}
                     <span className="absolute left-5 top-5 flex h-14 w-14 items-center justify-center rounded-full bg-marfil/95 text-bosque">
@@ -78,7 +73,7 @@ export function Services({ services }: { services: Service[] }) {
                     </div>
                   </div>
                 </article>
-              </Reveal>
+              </li>
             );
           })}
         </ul>

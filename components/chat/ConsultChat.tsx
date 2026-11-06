@@ -20,7 +20,7 @@ type Step = "elegir" | "escribir" | "enviando" | "enviado";
 
 const greeting: Message = {
   from: "empresa",
-  text: "¡Hola! Somos el equipo técnico. ¿Sobre qué servicio quieres consultarnos?",
+  text: "Hola, somos el equipo técnico. ¿Sobre qué servicio quieres consultarnos?",
 };
 
 export function ConsultChat({ services }: { services: Service[] }) {
